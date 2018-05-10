@@ -1,14 +1,7 @@
 import java.sql.*;
 /*
  *Creado por Elias Periañez
- *9 may. 2018
- *Como parte del proyecto Bases de datos to nitidas
- *Este archivo esta bajo la licencia de Creative Commons Reconocimiento 4.0 Internacional (Más informacion https://creativecommons.org/licenses/by/4.0/)
-________________________________________________________________________________________________________________________________________________________
- *Created by Elias Periañez
- *9 may. 2018
- *As part of the project Bases de datos to nitidas
- *This file is under the Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International (More info here http://creativecommons.org/licenses/by-nc-sa/4.0/)
+ is under the Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International (More info here http://creativecommons.org/licenses/by-nc-sa/4.0/)
  */
 
 public class Conexion {
@@ -39,7 +32,6 @@ public class Conexion {
 		try {
 			conexion = DriverManager.getConnection(url, login, password);
 		} catch (SQLException e) {
-			// TODO Bloque catch generado automáticamente
 			e.printStackTrace();
 		}
 	}
@@ -288,32 +280,6 @@ public class Conexion {
 
 	}
 
-	public boolean editarDatos(String tabla, String[] campos, String[] values, String condicion) {
-
-		boolean resultado = true;
-		String sql = "UPDATE ";
-		sql += "`" + tabla + "` SET ";
-		for (String x : campos) {
-			sql += "`" + x + "`,";
-		}
-		System.out.println(sql.length());
-		sql = sql.substring(0, sql.length() - 1);
-		sql += ") VALUES (";
-		for (String x : values) {
-			sql += "'" + x + "',";
-		}
-		sql = sql.substring(0, sql.length() - 1);
-		sql += ")";
-		System.out.println(sql);
-		try {
-			Statement stmt = conexion.createStatement();
-			stmt.executeUpdate(sql);
-		} catch (SQLException e) {
-			resultado = false;
-		}
-		return resultado;
-	}
-
 	public boolean borrarFila(String tabla, String condicion) {
 		boolean resultado = true;
 		String sql = "DELETE FROM `";
@@ -331,8 +297,31 @@ public class Conexion {
 		return resultado;
 	}
 	
+	/**
+	 * 
+	 * IMPORTANTE: Pasar la misma cantidad de columnas y valores.
+	 */
+	public boolean editarDatos(String tabla, String [] columnas, String [] valores, String condicion) {
+		boolean devolver = true;
+		String sql = "UPDATE `"+tabla+"` SET ";
+		for(int i = 0; i<columnas.length;i++) {
+			
+			sql+= "`"+columnas[i]+"`" + " = " + valores[i] + ", ";
+		}
+		sql = sql.substring(0, sql.length()-2);
+		if(condicion.equals("")) {
+			condicion = "1";
+		}
+		sql += " WHERE "+ condicion;
+		try {
+			Statement stm =  conexion.createStatement();
+			stm.executeUpdate(sql);
+		} catch (SQLException e) {
+			devolver = false;
+		}
+		return devolver;
+	}
 	
-
 	public String procesarRset(ResultSet rset, int columna) {
 		String resultado = "";
 		try {
