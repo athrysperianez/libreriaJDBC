@@ -1,7 +1,7 @@
 import java.sql.*;
 /*
  *Creado por Elias Periañez
- is under the Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International (More info here http://creativecommons.org/licenses/by-nc-sa/4.0/)
+ This file is under the Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International (More info here http://creativecommons.org/licenses/by-nc-sa/4.0/)
  */
 
 public class Conexion {
@@ -14,7 +14,7 @@ public class Conexion {
 
 	/**
 	 * @author Elias Periañez
-	 * El constructor crea una conexion a 
+	 * 
 	 */
 	public Conexion(String bd, String login, String pass, Boolean localhost) {
 		this(bd, login, pass, true, "localhost");
