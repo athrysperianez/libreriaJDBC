@@ -24,9 +24,33 @@ public class Conexion {
 		}
 	}
 
+	public Connection getConexion() {
+		return conexion;
+	}
+	
+	public String getDbStatus(String tabla) {
+		String devolver = "";
+		devolver += "DB: "+this.bd;
+		devolver += "\nUsuario: "+this.login;
+		devolver+="\nUsando el siguiente enlace: "+this.url;
+		devolver+="\nLa query de prueba ";
+		Statement stmt;
+		try {
+			stmt = conexion.createStatement();
+			stmt.executeQuery("SELECT * FROM "+tabla);
+			devolver += "tuvo exito";
+		} catch (SQLException e) {
+			devolver+="fue un error, a continuacion tienes el mensaje de JDBC:";
+			devolver+="\n"+e.getMessage();
+		}
+		return devolver;
+		
+	}
+	
 	public Conexion(String bd, String login, String pass, boolean localhost, String server) {
 		this.login = login;
 		this.password = pass;
+		this.bd = bd;
 		this.url += "//" + server + "/" + bd
 				+ "?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC";
 		try {
