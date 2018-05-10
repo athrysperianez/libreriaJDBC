@@ -20,7 +20,7 @@ public class Conexion {
 		this(bd, login, pass, true, "localhost");
 		if (!localhost) {
 			System.err.println(
-					"Has llamad al constructor de manera incorrecta, no se puede llamar con localhost como false y no proporcionar un servidor, hemos supuesto que el servidor es localhost.");
+					"Has llamado al constructor de manera incorrecta, no se puede llamar con localhost como false y no proporcionar un servidor, hemos supuesto que el servidor es localhost.");
 		}
 	}
 
@@ -56,7 +56,8 @@ public class Conexion {
 		try {
 			conexion = DriverManager.getConnection(url, login, password);
 		} catch (SQLException e) {
-			e.printStackTrace();
+			System.err.println("La conexion fallo, aqui tienes el mensaje de error: ");
+			System.err.println(e.getMessage());
 		}
 	}
 
