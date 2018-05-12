@@ -21,8 +21,9 @@ public class Conexion {
 
 	/**
 	 * @author Elias Periañez
-	 * El constructor crea una conexion a 
+	 * El constructor crea una conexion a 	
 	 */
+	//1 ok
 	public Conexion(String bd, String login, String pass, Boolean localhost) {
 		this(bd, login, pass, true, "localhost");
 		if (!localhost) {
@@ -30,7 +31,7 @@ public class Conexion {
 					"Has llamad al constructor de manera incorrecta, no se puede llamar con localhost como false y no proporcionar un servidor, hemos supuesto que el servidor es localhost.");
 		}
 	}
-
+        //1.1 
 	public Conexion(String bd, String login, String pass, boolean localhost, String server) {
 		this.login = login;
 		this.password = pass;
@@ -43,7 +44,7 @@ public class Conexion {
 			e.printStackTrace();
 		}
 	}
-
+//2 ok
 	public ResultSet Consulta(String query) {
 		ResultSet rset = null;
 		try {
@@ -55,18 +56,19 @@ public class Conexion {
 		}
 		return rset;
 	}
-
+//3ok
 	public String Consulta(String query, Boolean procesar) {
 		ResultSet rset = Consulta(query);
 		return ProcesarRset(rset);
 	}
-
+//4ok
 	public String Consulta(String query, Boolean procesar, int columna) {
 		ResultSet rset = Consulta(query);
 		return ProcesarRset(rset, columna);
 	}
-
+//5  ok
 	public String ProcesarRset(ResultSet rset) {
+		
 		String resultado = "";
 		try {
 			ResultSetMetaData rsmd = rset.getMetaData();
@@ -76,6 +78,7 @@ public class Conexion {
 				}
 				resultado = resultado.substring(0, resultado.length() - 1);
 				resultado += "/";
+				
 			}
 			resultado = resultado.substring(0, resultado.length() - 1);
 		} catch (SQLException e) {
@@ -84,7 +87,7 @@ public class Conexion {
 		}
 		return resultado;
 	}
-
+//6ok
 	public String ProcesarRset(ResultSet rset, int columnas) {
 		String resultado = "";
 		try {
@@ -99,7 +102,7 @@ public class Conexion {
 		}
 		return resultado;
 	}
-
+//7ok
 	public boolean insertarDatos(String tabla, String[] campos, byte[] values) {
 		boolean resultado = true;
 		String sql = "INSERT INTO ";
@@ -126,7 +129,7 @@ public class Conexion {
 		return resultado;
 
 	}
-
+//8ok
 	public boolean insertarDatos(String tabla, String[] campos, int[] values) {
 		boolean resultado = true;
 		String sql = "INSERT INTO ";
@@ -153,7 +156,7 @@ public class Conexion {
 		return resultado;
 
 	}
-
+//9
 	public boolean insertarDatos(String tabla, String[] campos, String[] values) {
 		boolean resultado = true;
 		String sql = "INSERT INTO ";
@@ -180,7 +183,7 @@ public class Conexion {
 		return resultado;
 
 	}
-
+//10ok
 	public boolean insertarDatos(String tabla, String[] campos, short[] values) {
 		boolean resultado = true;
 		String sql = "INSERT INTO ";
@@ -207,7 +210,7 @@ public class Conexion {
 		return resultado;
 
 	}
-
+//11ok
 	public boolean insertarDatos(String tabla, String[] campos, long[] values) {
 		boolean resultado = true;
 		String sql = "INSERT INTO ";
@@ -234,7 +237,7 @@ public class Conexion {
 		return resultado;
 
 	}
-
+//12ok
 	public boolean insertarDatos(String tabla, String[] campos, float[] values) {
 		boolean resultado = true;
 		String sql = "INSERT INTO ";
@@ -261,7 +264,7 @@ public class Conexion {
 		return resultado;
 
 	}
-
+//13ok
 	public boolean insertarDatos(String tabla, String[] campos, boolean[] values) {
 		boolean resultado = true;
 		String sql = "INSERT INTO ";
@@ -287,7 +290,7 @@ public class Conexion {
 		return resultado;
 
 	}
-
+//14ok
 	public boolean editarDatos(String tabla, String[] campos, String[] values, String condicion) {
 
 		boolean resultado = true;
@@ -313,7 +316,7 @@ public class Conexion {
 		}
 		return resultado;
 	}
-
+//15ok
 	public boolean borrarFila(String tabla, String condicion) {
 		boolean resultado = true;
 		String sql = "DELETE FROM `";
@@ -332,7 +335,7 @@ public class Conexion {
 	}
 	
 	
-
+//16ok
 	public String procesarRset(ResultSet rset, int columna) {
 		String resultado = "";
 		try {
@@ -345,7 +348,7 @@ public class Conexion {
 		return resultado;
 
 	}
-
+//17ok
 	public void kill() {
 		try {
 			conexion.close();
