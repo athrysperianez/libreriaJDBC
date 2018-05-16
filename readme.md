@@ -138,7 +138,7 @@ El principio del código  está para descargar el dato que quieras seleccionar de 
 En este caso lo que aparece en el comienzo del programa, es para borrar siempre que se cumpla la condición que marcaríamos. Se comunica con el método conexión.
 .............................................................................
 
-16//  public String procesarRset(ResultSet rset, int columna)
+16// public String procesarRset(ResultSet rset, int columna)
 
 Saca la información de la columna.
 
