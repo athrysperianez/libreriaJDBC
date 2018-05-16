@@ -13,8 +13,10 @@ public class Conexion {
 	private Connection conexion;
 
 	/**
-	 * @author Elias Periañez
-	 * 
+	 * @author Elias
+	 * Este metodo hace x
+	 * @param db Es la base de datos
+	 * @return lo que devuelve
 	 */
 	public Conexion(String bd, String login, String pass, Boolean localhost) {
 		this(bd, login, pass, true, "localhost");
