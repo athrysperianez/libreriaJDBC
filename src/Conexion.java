@@ -14,9 +14,8 @@ public class Conexion {
 
 	/**
 	 * @author Elias
-	 * Este metodo hace x
 	 * @param db Es la base de datos
-	 * @return lo que devuelve
+	 * 
 	 */
 	public Conexion(String bd, String login, String pass, Boolean localhost) {
 		this(bd, login, pass, true, "localhost");
@@ -66,7 +65,6 @@ public class Conexion {
 	public ResultSet Consulta(String query) {
 		ResultSet rset = null;
 		try {
-			Statement stmt = conexion.createStatement();
 			PreparedStatement pstmt = conexion.prepareStatement(query);
 			rset = pstmt.executeQuery(query);
 		} catch (SQLException s) {
@@ -77,15 +75,15 @@ public class Conexion {
 
 	public String Consulta(String query, Boolean procesar) {
 		ResultSet rset = Consulta(query);
-		return ProcesarRset(rset);
+		return procesarRset(rset);
 	}
 
 	public String Consulta(String query, Boolean procesar, int columna) {
 		ResultSet rset = Consulta(query);
-		return ProcesarRset(rset, columna);
+		return procesarRset(rset, columna);
 	}
 
-	public String ProcesarRset(ResultSet rset) {
+	public String procesarRset(ResultSet rset) {
 		String resultado = "";
 		try {
 			ResultSetMetaData rsmd = rset.getMetaData();
@@ -98,13 +96,12 @@ public class Conexion {
 			}
 			resultado = resultado.substring(0, resultado.length() - 1);
 		} catch (SQLException e) {
-			// TODO Bloque catch generado automáticamente
 			e.printStackTrace();
 		}
 		return resultado;
 	}
 
-	public String ProcesarRset(ResultSet rset, int columnas) {
+	public String procesarRset(ResultSet rset, int columnas) {
 		String resultado = "";
 		try {
 			ResultSetMetaData rsmd = rset.getMetaData();
@@ -113,7 +110,6 @@ public class Conexion {
 			}
 			resultado = resultado.substring(0, resultado.length() - 1);
 		} catch (SQLException e) {
-			// TODO Bloque catch generado automáticamente
 			e.printStackTrace();
 		}
 		return resultado;
@@ -126,7 +122,6 @@ public class Conexion {
 		for (String x : campos) {
 			sql += "`" + x + "`,";
 		}
-		System.out.println(sql.length());
 		sql = sql.substring(0, sql.length() - 1);
 		sql += ") VALUES (";
 		for (byte x : values) {
@@ -134,7 +129,7 @@ public class Conexion {
 		}
 		sql = sql.substring(0, sql.length() - 1);
 		sql += ")";
-		System.out.println(sql);
+		
 		try {
 			Statement stmt = conexion.createStatement();
 			stmt.executeUpdate(sql);
@@ -153,7 +148,7 @@ public class Conexion {
 		for (String x : campos) {
 			sql += "`" + x + "`,";
 		}
-		System.out.println(sql.length());
+		
 		sql = sql.substring(0, sql.length() - 1);
 		sql += ") VALUES (";
 		for (int x : values) {
@@ -161,7 +156,7 @@ public class Conexion {
 		}
 		sql = sql.substring(0, sql.length() - 1);
 		sql += ")";
-		System.out.println(sql);
+		
 		try {
 			Statement stmt = conexion.createStatement();
 			stmt.executeUpdate(sql);
@@ -180,7 +175,7 @@ public class Conexion {
 		for (String x : campos) {
 			sql += "`" + x + "`,";
 		}
-		System.out.println(sql.length());
+		
 		sql = sql.substring(0, sql.length() - 1);
 		sql += ") VALUES (";
 		for (String x : values) {
@@ -188,7 +183,7 @@ public class Conexion {
 		}
 		sql = sql.substring(0, sql.length() - 1);
 		sql += ")";
-		System.out.println(sql);
+		
 		try {
 			Statement stmt = conexion.createStatement();
 			stmt.executeUpdate(sql);
@@ -207,7 +202,7 @@ public class Conexion {
 		for (String x : campos) {
 			sql += "`" + x + "`,";
 		}
-		System.out.println(sql.length());
+		
 		sql = sql.substring(0, sql.length() - 1);
 		sql += ") VALUES (";
 		for (short x : values) {
@@ -215,7 +210,7 @@ public class Conexion {
 		}
 		sql = sql.substring(0, sql.length() - 1);
 		sql += ")";
-		System.out.println(sql);
+		
 		try {
 			Statement stmt = conexion.createStatement();
 			stmt.executeUpdate(sql);
@@ -234,7 +229,7 @@ public class Conexion {
 		for (String x : campos) {
 			sql += "`" + x + "`,";
 		}
-		System.out.println(sql.length());
+		
 		sql = sql.substring(0, sql.length() - 1);
 		sql += ") VALUES (";
 		for (long x : values) {
@@ -242,7 +237,7 @@ public class Conexion {
 		}
 		sql = sql.substring(0, sql.length() - 1);
 		sql += ")";
-		System.out.println(sql);
+		
 		try {
 			Statement stmt = conexion.createStatement();
 			stmt.executeUpdate(sql);
@@ -261,7 +256,7 @@ public class Conexion {
 		for (String x : campos) {
 			sql += "`" + x + "`,";
 		}
-		System.out.println(sql.length());
+		
 		sql = sql.substring(0, sql.length() - 1);
 		sql += ") VALUES (";
 		for (float x : values) {
@@ -269,7 +264,7 @@ public class Conexion {
 		}
 		sql = sql.substring(0, sql.length() - 1);
 		sql += ")";
-		System.out.println(sql);
+		
 		try {
 			Statement stmt = conexion.createStatement();
 			stmt.executeUpdate(sql);
@@ -288,15 +283,15 @@ public class Conexion {
 		for (String x : campos) {
 			sql += "`" + x + "`,";
 		}
-		System.out.println(sql.length());
+		
 		sql = sql.substring(0, sql.length() - 1);
 		sql += ") VALUES (";
 		for (boolean x : values) {
 			sql += "'" + x + "',";
-		}
+		}	
 		sql = sql.substring(0, sql.length() - 1);
 		sql += ")";
-		System.out.println(sql);
+		
 		try {
 			Statement stmt = conexion.createStatement();
 			stmt.executeUpdate(sql);
@@ -348,18 +343,23 @@ public class Conexion {
 		}
 		return devolver;
 	}
-	
-	public String procesarRset(ResultSet rset, int columna) {
+
+	public String procesarRset(ResultSet rset, String separador, String separador2) {
 		String resultado = "";
 		try {
+			ResultSetMetaData rsmd = rset.getMetaData();
 			while (rset.next()) {
-				resultado += rset.getString(columna);
+				for (int i = 1; i <= rsmd.getColumnCount(); i++) {
+					resultado += rset.getString(i) + separador;
+				}
+				resultado = resultado.substring(0, resultado.length() - 1);
+				resultado += separador2;
 			}
+			resultado = resultado.substring(0, resultado.length() - 1);
 		} catch (SQLException e) {
-			// TODO Bloque catch generado automáticamente
+			e.printStackTrace();
 		}
 		return resultado;
-
 	}
 
 	public void kill() {
